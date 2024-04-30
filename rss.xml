@@ -9,12 +9,13 @@
       <atom:link href="https://lordofwizard.github.io/rss.xml" rel="self" type="application/rss+xml"/>
       <lastBuildDate>Tue, 30 Apr 2024 00:00:00 +0000</lastBuildDate>
       <item>
-          <title>Install BTRFS the Minimal Way with Arch Linux</title>
+          <title>Minimal Setup for a BTRFS System with Arch.🗿</title>
           <pubDate>Tue, 30 Apr 2024 00:00:00 +0000</pubDate>
           <author>Unknown</author>
-          <link>https://lordofwizard.github.io/posts/btrfs/</link>
-          <guid>https://lordofwizard.github.io/posts/btrfs/</guid>
-          <description xml:base="https://lordofwizard.github.io/posts/btrfs/">&lt;h1 id=&quot;btrfs-guide-on-how-to-install-it-on-arch-linux&quot;&gt;BtrFs Guide on how to install it on arch linux&lt;&#x2F;h1&gt;
+          <link>https://lordofwizard.github.io/posts/btrfs/main/</link>
+          <guid>https://lordofwizard.github.io/posts/btrfs/main/</guid>
+          <description xml:base="https://lordofwizard.github.io/posts/btrfs/main/">&lt;h1 id=&quot;btrfs-guide-on-how-to-install-it-on-arch-linux&quot;&gt;BtrFs Guide on how to install it on arch linux&lt;&#x2F;h1&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;lordofwizard.github.io&#x2F;posts&#x2F;btrfs&#x2F;main&#x2F;Media&#x2F;image.png&quot; alt=&quot;image&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
 &lt;hr &#x2F;&gt;
 &lt;ol&gt;
 &lt;li&gt;Get your system ready for a basic arch installation. &lt;strong&gt;WE DON&amp;quot;T USE ARCHINSTALL SCRIPT&lt;&#x2F;strong&gt; we are &lt;em&gt;&lt;strong&gt;better&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt;. &lt;&#x2F;li&gt;
@@ -31,10 +32,12 @@ hwclock -w
 &lt;p&gt;for me it&#x27;s like this. &lt;&#x2F;p&gt;
 &lt;&#x2F;li&gt;
 &lt;&#x2F;ol&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;lordofwizard.github.io&#x2F;posts&#x2F;btrfs&#x2F;main&#x2F;Media&#x2F;image%20(1).png&quot; alt=&quot;image&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
 &lt;hr &#x2F;&gt;
 &lt;h3 id=&quot;make-partitions-using-fdisk&quot;&gt;Make partitions using FDisk&lt;&#x2F;h3&gt;
 &lt;p&gt;&lt;em&gt;Note you have to select the proper drive for your system, if you mess this up. you can lose your data forever.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
 &lt;p&gt;This is how you make a &lt;code&gt;&#x2F;boot&lt;&#x2F;code&gt; partition.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;lordofwizard.github.io&#x2F;posts&#x2F;btrfs&#x2F;main&#x2F;Media&#x2F;image%20(2).png&quot; alt=&quot;image&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
 &lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;n - for new partition
 p - for selecting primary partition
 +500M - size
@@ -55,6 +58,7 @@ p - for selecting primary partition
 &lt;&#x2F;ol&gt;
 &lt;hr &#x2F;&gt;
 &lt;p&gt;For me i am on &lt;em&gt;LEGACY&lt;&#x2F;em&gt; boot. but for EFI steps are different&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;lordofwizard.github.io&#x2F;posts&#x2F;btrfs&#x2F;main&#x2F;Media&#x2F;image%20(3).png&quot; alt=&quot;image&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
 &lt;hr &#x2F;&gt;
 &lt;h3 id=&quot;mount-them&quot;&gt;Mount them&lt;&#x2F;h3&gt;
 &lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;mount &amp;#x2F;dev&amp;#x2F;vda3 &amp;#x2F;mnt
