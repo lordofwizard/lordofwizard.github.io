@@ -7,14 +7,136 @@
       <generator>Zola</generator>
       <language>en</language>
       <atom:link href="https://lordofwizard.github.io/rss.xml" rel="self" type="application/rss+xml"/>
-      <lastBuildDate>Sat, 26 Aug 2023 00:00:00 +0000</lastBuildDate>
+      <lastBuildDate>Tue, 30 Apr 2024 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>Install BTRFS the Minimal Way with Arch Linux</title>
+          <pubDate>Tue, 30 Apr 2024 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://lordofwizard.github.io/posts/btrfs/</link>
+          <guid>https://lordofwizard.github.io/posts/btrfs/</guid>
+          <description xml:base="https://lordofwizard.github.io/posts/btrfs/">&lt;h1 id=&quot;btrfs-guide-on-how-to-install-it-on-arch-linux&quot;&gt;BtrFs Guide on how to install it on arch linux&lt;&#x2F;h1&gt;
+&lt;hr &#x2F;&gt;
+&lt;ol&gt;
+&lt;li&gt;Get your system ready for a basic arch installation. &lt;strong&gt;WE DON&amp;quot;T USE ARCHINSTALL SCRIPT&lt;&#x2F;strong&gt; we are &lt;em&gt;&lt;strong&gt;better&lt;&#x2F;strong&gt;&lt;&#x2F;em&gt;. &lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;timedatectl set-ntp true
+hwclock -w
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;setup-your-partitions-most-imp-step&quot;&gt;Setup your partitions (MOST IMP STEP)&lt;&#x2F;h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;do &lt;code&gt;fdisk -l&lt;&#x2F;code&gt; to checkout what paritions you have. and then select the drive&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;for me it&#x27;s like this. &lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;hr &#x2F;&gt;
+&lt;h3 id=&quot;make-partitions-using-fdisk&quot;&gt;Make partitions using FDisk&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;em&gt;Note you have to select the proper drive for your system, if you mess this up. you can lose your data forever.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;This is how you make a &lt;code&gt;&#x2F;boot&lt;&#x2F;code&gt; partition.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;n - for new partition
+p - for selecting primary partition
++500M - size
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;hr &#x2F;&gt;
+&lt;h3 id=&quot;with-this-now-make-partitions-accordingly&quot;&gt;With this now make partitions accordingly.&lt;&#x2F;h3&gt;
+&lt;p&gt;for demo purposes imma make a &lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;500 MB partition for my &lt;strong&gt;legacy&lt;&#x2F;strong&gt; bios computer&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;2 gb partition for my &lt;strong&gt;swap&lt;&#x2F;strong&gt; parition&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;and rest of approx 38.5 gb for my &lt;code&gt;&#x2F;root&lt;&#x2F;code&gt; partition.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;For me i am on &lt;em&gt;LEGACY&lt;&#x2F;em&gt; boot. but for EFI steps are different&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h3 id=&quot;mount-them&quot;&gt;Mount them&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;mount &amp;#x2F;dev&amp;#x2F;vda3 &amp;#x2F;mnt
+btrfs subvolume create &amp;#x2F;mnt&amp;#x2F;@ 
+btrfs subvolume create &amp;#x2F;mnt&amp;#x2F;@home
+btrfs subvolume create &amp;#x2F;mnt&amp;#x2F;@srv 
+btrfs subvolume create &amp;#x2F;mnt&amp;#x2F;@cache
+btrfs subvolume create &amp;#x2F;mnt&amp;#x2F;@log
+umount &amp;#x2F;mnt
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;hr &#x2F;&gt;
+&lt;h3 id=&quot;mount-partitions-with-options-with-paths-and-stuff&quot;&gt;Mount Partitions with options with paths and stuff&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;mount -o defaults,noatime,compress=zstd,subvol=@ &amp;#x2F;dev&amp;#x2F;vda3 &amp;#x2F;mnt
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;mount &amp;#x2F;dev&amp;#x2F;vda1 &amp;#x2F;mnt&amp;#x2F;boot
+mkdir &amp;#x2F;mnt&amp;#x2F;boot
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;swapon &amp;#x2F;dev&amp;#x2F;vda2
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;&lt;strong&gt;Make sure you make the directories for the required folders you are gonna install&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;mkdir &amp;#x2F;mnt&amp;#x2F;{home,var,srv}
+mkdir &amp;#x2F;mnt&amp;#x2F;var&amp;#x2F;{cache,log}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;mount -o defaults,noatime,compress=zstd,subvol=@home &amp;#x2F;dev&amp;#x2F;vda3 &amp;#x2F;mnt&amp;#x2F;home
+mount -o defaults,noatime,compress=zstd,subvol=@cache &amp;#x2F;dev&amp;#x2F;vda3 &amp;#x2F;mnt&amp;#x2F;var&amp;#x2F;cache
+mount -o defaults,noatime,compress=zstd,subvol=@log &amp;#x2F;dev&amp;#x2F;vda3 &amp;#x2F;mnt&amp;#x2F;var&amp;#x2F;log
+mount -o defaults,noatime,compress=zstd,subvol=@srv &amp;#x2F;dev&amp;#x2F;vda3 &amp;#x2F;mnt&amp;#x2F;srv
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;hr &#x2F;&gt;
+&lt;p&gt;Now you are free to do whatever you want basically. but here&#x27;s a small guide on how i setup my installation&lt;&#x2F;p&gt;
+&lt;p&gt;OPTIONAL &lt;em&gt;before this step, i generally like to change my&lt;&#x2F;em&gt; &lt;code&gt;&#x2F;etc&#x2F;pacman.conf&lt;&#x2F;code&gt; to enable &lt;code&gt;ParallelDownloads&lt;&#x2F;code&gt; and set it to 10&lt;&#x2F;p&gt;
+&lt;p&gt;just to make things significantly faster to &lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;pacstrap &amp;#x2F;mnt vim nano grub base base-devel linux linux-firmware networkmanager neofetch
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;hr &#x2F;&gt;
+&lt;h3 id=&quot;chrooting-in-to-our-created-system&quot;&gt;&lt;em&gt;Chrooting&lt;&#x2F;em&gt; in to our created system&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;arch-chroot &amp;#x2F;mnt
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h4 id=&quot;the-usual-locale-steps&quot;&gt;The usual locale steps&lt;&#x2F;h4&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;vim &amp;#x2F;etc&amp;#x2F;locale.gen
+locale-gen
+export LANG=en_us.UTF-8
+echo &amp;quot;LANG=en_us.UTF-8&amp;quot; &amp;gt; &amp;#x2F;etc&amp;#x2F;locale.conf
+echo laptop_name &amp;gt; &amp;#x2F;etc&amp;#x2F;hostname
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h4 id=&quot;edit-your-hosts-file-to-set-network-functionalities-on-local-area-network&quot;&gt;Edit your hosts file to set Network Functionalities on local area network&lt;&#x2F;h4&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;vim &amp;#x2F;etc&amp;#x2F;hosts
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;127.0.0.1	localhost
+::1         localhost
+127.0.1.1	laptop_name
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;hr &#x2F;&gt;
+&lt;h3 id=&quot;set-root-password-and-stuff&quot;&gt;Set Root Password and stuff&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;passwd
+systemctl enable NetworkManager
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;hr &#x2F;&gt;
+&lt;h3 id=&quot;grub-configuration&quot;&gt;Grub Configuration&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;grub-install &amp;#x2F;dev&amp;#x2F;vda
+grub-mkconfig -o &amp;#x2F;boot&amp;#x2F;grub&amp;#x2F;grub.cfg
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Grub Setup done ✅️ but note this is for Legacy Bios you need to follow different steps if your bios are UEFI&#x2F;EFI Bios.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;exit
+genfstab -U &amp;#x2F;mnt &amp;gt;&amp;gt; &amp;#x2F;mnt&amp;#x2F;etc&amp;#x2F;fstab
+umount -R &amp;#x2F;mnt
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;hr &#x2F;&gt;
+&lt;h3 id=&quot;all-done&quot;&gt;ALL DONE&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;reboot
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</description>
+      </item>
       <item>
           <title>Why Project Based learning is Based.🗿</title>
           <pubDate>Sat, 26 Aug 2023 00:00:00 +0000</pubDate>
           <author>Unknown</author>
           <link>https://lordofwizard.github.io/posts/project-based-learning/</link>
           <guid>https://lordofwizard.github.io/posts/project-based-learning/</guid>
-          <description>&lt;p&gt;Hey, awesome learners of the future! 🌟 Let’s talk about leveling up your education game with something seriously cool: project-based learning (PBL). Sure, books and YouTube have their perks, but trust us, diving into learning through hands-on projects is like switching from basic mode to expert level. Here’s why you should seriously consider hopping on this train.
+          <description xml:base="https://lordofwizard.github.io/posts/project-based-learning/">&lt;p&gt;Hey, awesome learners of the future! 🌟 Let’s talk about leveling up your education game with something seriously cool: project-based learning (PBL). Sure, books and YouTube have their perks, but trust us, diving into learning through hands-on projects is like switching from basic mode to expert level. Here’s why you should seriously consider hopping on this train.
 &lt;img src=&quot;https:&#x2F;&#x2F;media.licdn.com&#x2F;dms&#x2F;image&#x2F;D4D22AQGXPntfLcsQ_A&#x2F;feedshare-shrink_800&#x2F;0&#x2F;1692013252977?e=1695859200&amp;amp;v=beta&amp;amp;t=bltTbPBRlFKzInkyk_axx9SwEqjnLPodPvOdODjvrRY&quot; alt=&quot;IMG&quot; &#x2F;&gt;
 &lt;strong&gt;1. Learning by Doing, Anyone? 🚀&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
 &lt;p&gt;Imagine you&#x27;re trying to master a killer recipe. Are you gonna stick to reading the cookbook or get hands-on in the kitchen? No-brainer, right? Projects are like your interactive cooking class. You&#x27;re not just reading – you&#x27;re diving straight into the action. Learning by doing? It&#x27;s the real deal!&lt;&#x2F;p&gt;
@@ -40,7 +162,7 @@
           <author>Unknown</author>
           <link>https://lordofwizard.github.io/posts/why-i-choose-rust/</link>
           <guid>https://lordofwizard.github.io/posts/why-i-choose-rust/</guid>
-          <description>&lt;p&gt;&lt;strong&gt;Why I Choose Rust for Development: A Journey into Fast, Reliable, and Community-Driven Programming&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+          <description xml:base="https://lordofwizard.github.io/posts/why-i-choose-rust/">&lt;p&gt;&lt;strong&gt;Why I Choose Rust for Development: A Journey into Fast, Reliable, and Community-Driven Programming&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
 &lt;p&gt;In the ever-evolving landscape of programming languages, developers are presented with a myriad of choices. Each language brings its own set of advantages and trade-offs, catering to different use cases and preferences. Among this diverse array, Rust shines as a standout choice, attracting programmers with its remarkable blend of speed, reliability, an exceptional development environment, a vibrant community, test-driven development (TDD) practices, and cross-compilation capabilities. In this blog post, we&#x27;ll explore why Rust has captured the hearts and minds of developers, propelling it to the forefront of modern software development.&lt;&#x2F;p&gt;
 &lt;p&gt;&lt;strong&gt;1. Speed and Reliability:&lt;&#x2F;strong&gt;
 Rust&#x27;s commitment to both speed and reliability sets it apart in the programming landscape. Its innovative ownership model, which prevents memory-related bugs like null pointer dereferences and data races, ensures that Rust code is rock-solid and dependable. This feature is a boon for developers who want to avoid the kind of bugs that can plague software for years after deployment. With Rust, you can create performant applications without sacrificing reliability, a combination that&#x27;s crucial for building modern, user-centric software.&lt;&#x2F;p&gt;
@@ -62,7 +184,7 @@ In the ever-accelerating realm of software development, choosing the right progr
           <author>Unknown</author>
           <link>https://lordofwizard.github.io/posts/why-i-love-rust/</link>
           <guid>https://lordofwizard.github.io/posts/why-i-love-rust/</guid>
-          <description>&lt;p&gt;&lt;strong&gt;WHY I LOVE RUST&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+          <description xml:base="https://lordofwizard.github.io/posts/why-i-love-rust/">&lt;p&gt;&lt;strong&gt;WHY I LOVE RUST&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
 &lt;p&gt;I never been so close and more engrossed in learning something so awesome in my life yet. I started coding in 8th standard, in 2016. With the resources i had, i started learning C programming and Python on a 2003 laptop i had with BOSS Linux (A modified version of Ubuntu 16.04 LTS. That dopamine of learning something new, i haven&#x27;t quite felt until i started using Rust as a language of choice.&lt;&#x2F;p&gt;
 &lt;p&gt;I did some projects in it. Mainly the most important one of them being, MDM (Minimal Diary Manager). It was just a simple diary cli application where you can add some stuff as a simple string argument, and will add that in a file, and push it on a remote git repository. I really loved the way it turned out.&lt;&#x2F;p&gt;
 &lt;p&gt;The whole project was done within 24 hours when i was supposed to be studying for my IN-Sems Examinations. (i didn&#x27;t do well btw). But was passed somehow.&lt;&#x2F;p&gt;

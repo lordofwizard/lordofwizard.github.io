@@ -20,7 +20,7 @@
   />
   <link rel="stylesheet" href="https://lordofwizard.github.io/style.css"/>
   
-  <title>Why I Choose Rust for Development: A Journey into Fast, Reliable, and Community-Driven Programming</title>
+  <title>Install BTRFS the Minimal Way with Arch Linux</title>
   
 
   
@@ -112,44 +112,144 @@
 	<header class="post-header">
 	  <div class="post-meta">
 		
-		<span>Aug 17, 2023</span>
+		<span>Apr 30, 2024</span>
 		<small> - 
 <span class="reading-time" title="Estimated read time">
   
-  2 min read
+  1 min read
   
 </span>
 </small>
 		
             
 	  </div>
-	  <h1>Why I Choose Rust for Development: A Journey into Fast, Reliable, and Community-Driven Programming</h1>
+	  <h1>Install BTRFS the Minimal Way with Arch Linux</h1>
 	</header>
 
 	<div class="content">
         
-	  <p><strong>Why I Choose Rust for Development: A Journey into Fast, Reliable, and Community-Driven Programming</strong></p>
-<p>In the ever-evolving landscape of programming languages, developers are presented with a myriad of choices. Each language brings its own set of advantages and trade-offs, catering to different use cases and preferences. Among this diverse array, Rust shines as a standout choice, attracting programmers with its remarkable blend of speed, reliability, an exceptional development environment, a vibrant community, test-driven development (TDD) practices, and cross-compilation capabilities. In this blog post, we'll explore why Rust has captured the hearts and minds of developers, propelling it to the forefront of modern software development.</p>
-<p><strong>1. Speed and Reliability:</strong>
-Rust's commitment to both speed and reliability sets it apart in the programming landscape. Its innovative ownership model, which prevents memory-related bugs like null pointer dereferences and data races, ensures that Rust code is rock-solid and dependable. This feature is a boon for developers who want to avoid the kind of bugs that can plague software for years after deployment. With Rust, you can create performant applications without sacrificing reliability, a combination that's crucial for building modern, user-centric software.</p>
-<p><strong>2. Outstanding Development Environment:</strong>
-A language is only as good as the tools that support it. Rust's development environment is nothing short of outstanding, making the programmer's journey smooth and efficient. Rust's flagship development tool, Cargo, is a package manager and build tool rolled into one. It simplifies dependency management, enabling developers to focus on writing code rather than wrestling with dependencies. Rust Analyzer, an intelligent IDE plugin, enhances the development process by providing instant feedback, code completion, and error highlighting. The seamless integration with Git streamlines version control, fostering collaboration and making team-based projects a breeze.</p>
-<p><strong>3. Flourishing Developer Community:</strong>
-Rust's meteoric rise can be largely attributed to its vibrant and welcoming community. The Rust programming language has not only garnered a dedicated following but has also inspired platforms like &quot;Rust for Rustaceans&quot; and the broader &quot;Rust Community.&quot; These platforms facilitate knowledge sharing, collaborative problem-solving, and the exchange of best practices. Whether you're a beginner seeking guidance or an experienced developer looking to contribute, Rust's community is a place where everyone's voice is valued, fostering an environment of continuous learning and growth.</p>
-<p><strong>4. Test-Driven Development (TDD) Philosophy:</strong>
-Rust's support for TDD aligns perfectly with the modern software development ethos of writing tests before implementing features. This approach enhances code quality and maintainability, reducing the likelihood of introducing bugs as the codebase evolves. Rust's robust testing framework makes it seamless to write tests that ensure your code behaves as expected. The combination of TDD and Rust's strong type system empowers developers to confidently iterate on their code without fearing hidden regressions.</p>
-<p><strong>5. Cross-Compilation and Platform Independence:</strong>
-In today's diverse computing landscape, where applications run on a plethora of devices and architectures, cross-compilation is a valuable asset. Rust's dedication to platform independence and its ability to cross-compile code for various targets enables developers to create software that reaches a wide audience. Whether you're building software for desktops, embedded systems, or the web, Rust's cross-compilation capabilities streamline the development process and extend your reach.</p>
-<p><strong>Conclusion:</strong>
-In the ever-accelerating realm of software development, choosing the right programming language is a decision of paramount importance. Rust's allure lies in its unique ability to deliver high performance, robustness, an exceptional development environment, an engaged community, adherence to TDD principles, and cross-compilation prowess. As a language that embraces both the needs of seasoned developers and newcomers, Rust stands as a testament to the power of innovation and collaboration. So, whether you're building the next generation of applications or refining existing software, Rust offers a remarkable journey into a world of speed, reliability, and community-driven excellence.</p>
+	  <h1 id="btrfs-guide-on-how-to-install-it-on-arch-linux">BtrFs Guide on how to install it on arch linux</h1>
+<hr />
+<ol>
+<li>Get your system ready for a basic arch installation. <strong>WE DON&quot;T USE ARCHINSTALL SCRIPT</strong> we are <em><strong>better</strong></em>. </li>
+</ol>
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">timedatectl set-ntp true
+hwclock -w
+</code></pre>
+<h3 id="setup-your-partitions-most-imp-step">Setup your partitions (MOST IMP STEP)</h3>
+<ol>
+<li>
+<p>do <code>fdisk -l</code> to checkout what paritions you have. and then select the drive</p>
+</li>
+<li>
+<p>for me it's like this. </p>
+</li>
+</ol>
+<hr />
+<h3 id="make-partitions-using-fdisk">Make partitions using FDisk</h3>
+<p><em>Note you have to select the proper drive for your system, if you mess this up. you can lose your data forever.</em></p>
+<p>This is how you make a <code>/boot</code> partition.</p>
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">n - for new partition
+p - for selecting primary partition
++500M - size
+</code></pre>
+<hr />
+<h3 id="with-this-now-make-partitions-accordingly">With this now make partitions accordingly.</h3>
+<p>for demo purposes imma make a </p>
+<ol>
+<li>
+<p>500 MB partition for my <strong>legacy</strong> bios computer</p>
+</li>
+<li>
+<p>2 gb partition for my <strong>swap</strong> parition</p>
+</li>
+<li>
+<p>and rest of approx 38.5 gb for my <code>/root</code> partition.</p>
+</li>
+</ol>
+<hr />
+<p>For me i am on <em>LEGACY</em> boot. but for EFI steps are different</p>
+<hr />
+<h3 id="mount-them">Mount them</h3>
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">mount &#x2F;dev&#x2F;vda3 &#x2F;mnt
+btrfs subvolume create &#x2F;mnt&#x2F;@ 
+btrfs subvolume create &#x2F;mnt&#x2F;@home
+btrfs subvolume create &#x2F;mnt&#x2F;@srv 
+btrfs subvolume create &#x2F;mnt&#x2F;@cache
+btrfs subvolume create &#x2F;mnt&#x2F;@log
+umount &#x2F;mnt
+</code></pre>
+<hr />
+<h3 id="mount-partitions-with-options-with-paths-and-stuff">Mount Partitions with options with paths and stuff</h3>
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">mount -o defaults,noatime,compress=zstd,subvol=@ &#x2F;dev&#x2F;vda3 &#x2F;mnt
+</code></pre>
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">mount &#x2F;dev&#x2F;vda1 &#x2F;mnt&#x2F;boot
+mkdir &#x2F;mnt&#x2F;boot
+</code></pre>
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">swapon &#x2F;dev&#x2F;vda2
+</code></pre>
+<hr />
+<p><strong>Make sure you make the directories for the required folders you are gonna install</strong></p>
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">mkdir &#x2F;mnt&#x2F;{home,var,srv}
+mkdir &#x2F;mnt&#x2F;var&#x2F;{cache,log}
+</code></pre>
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">mount -o defaults,noatime,compress=zstd,subvol=@home &#x2F;dev&#x2F;vda3 &#x2F;mnt&#x2F;home
+mount -o defaults,noatime,compress=zstd,subvol=@cache &#x2F;dev&#x2F;vda3 &#x2F;mnt&#x2F;var&#x2F;cache
+mount -o defaults,noatime,compress=zstd,subvol=@log &#x2F;dev&#x2F;vda3 &#x2F;mnt&#x2F;var&#x2F;log
+mount -o defaults,noatime,compress=zstd,subvol=@srv &#x2F;dev&#x2F;vda3 &#x2F;mnt&#x2F;srv
+</code></pre>
+<hr />
+<p>Now you are free to do whatever you want basically. but here's a small guide on how i setup my installation</p>
+<p>OPTIONAL <em>before this step, i generally like to change my</em> <code>/etc/pacman.conf</code> to enable <code>ParallelDownloads</code> and set it to 10</p>
+<p>just to make things significantly faster to </p>
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">pacstrap &#x2F;mnt vim nano grub base base-devel linux linux-firmware networkmanager neofetch
+</code></pre>
+<hr />
+<h3 id="chrooting-in-to-our-created-system"><em>Chrooting</em> in to our created system</h3>
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">arch-chroot &#x2F;mnt
+</code></pre>
+<h4 id="the-usual-locale-steps">The usual locale steps</h4>
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">vim &#x2F;etc&#x2F;locale.gen
+locale-gen
+export LANG=en_us.UTF-8
+echo &quot;LANG=en_us.UTF-8&quot; &gt; &#x2F;etc&#x2F;locale.conf
+echo laptop_name &gt; &#x2F;etc&#x2F;hostname
+</code></pre>
+<h4 id="edit-your-hosts-file-to-set-network-functionalities-on-local-area-network">Edit your hosts file to set Network Functionalities on local area network</h4>
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">vim &#x2F;etc&#x2F;hosts
+</code></pre>
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">127.0.0.1	localhost
+::1         localhost
+127.0.1.1	laptop_name
+</code></pre>
+<hr />
+<h3 id="set-root-password-and-stuff">Set Root Password and stuff</h3>
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">passwd
+systemctl enable NetworkManager
+</code></pre>
+<hr />
+<h3 id="grub-configuration">Grub Configuration</h3>
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">grub-install &#x2F;dev&#x2F;vda
+grub-mkconfig -o &#x2F;boot&#x2F;grub&#x2F;grub.cfg
+</code></pre>
+<p>Grub Setup done ✅️ but note this is for Legacy Bios you need to follow different steps if your bios are UEFI/EFI Bios.</p>
+<hr />
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">exit
+genfstab -U &#x2F;mnt &gt;&gt; &#x2F;mnt&#x2F;etc&#x2F;fstab
+umount -R &#x2F;mnt
+</code></pre>
+<hr />
+<h3 id="all-done">ALL DONE</h3>
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">reboot
+</code></pre>
 
 	</div>
 	<hr class="post-end">
 	<footer class="post-info">
     
-    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>634 Words</p>
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>483 Words</p>
     
-    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2023-08-17</p>
+    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2024-04-30</p>
     
 	</footer>
   </article>
