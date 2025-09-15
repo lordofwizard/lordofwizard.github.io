@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>LordOfWizard - Blog</title>
+    <subtitle>LordOfWizard&#x27;s Blog</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://lordofwizard.com/posts/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://lordofwizard.com/posts/"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-09-03T00:00:00+00:00</updated>
+    <id>https://lordofwizard.com/posts/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Some of my favorite books of all time</title>
+        <published>2025-09-03T00:00:00+00:00</published>
+        <updated>2025-09-03T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://lordofwizard.com/posts/some-of-my-books/"/>
+        <id>https://lordofwizard.com/posts/some-of-my-books/</id>
+        
+        <content type="html" xml:base="https://lordofwizard.com/posts/some-of-my-books/">&lt;h4 id=&quot;some-of-my-favorite-books-of-all-time&quot;&gt;Some of My Favorite Books of All Time&lt;a class=&quot;zola-anchor&quot; href=&quot;#some-of-my-favorite-books-of-all-time&quot; aria-label=&quot;Anchor link for: some-of-my-favorite-books-of-all-time&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h4&gt;
+&lt;p&gt;My relationship with reading hasn&#x27;t been lifelong I only discovered this passion relatively recently. I struggled with English in high school, but after immersing myself in English movies and TV shows, I became comfortable reading in the language daily.&lt;&#x2F;p&gt;
+&lt;p&gt;I started with accessible books like the beloved Harry Potter series and some works by R. K. Narayan, then fell down the self-help rabbit hole (Think and Grow Rich, Jeff Keller, Dale Carnegie, The Alchemist – you know the drill).&lt;&#x2F;p&gt;
+&lt;p&gt;Eventually, I graduated to some truly exceptional novels. Here they are, along with my experiences:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;1. Angels and Demons - Dan Brown&lt;&#x2F;strong&gt;
+This book is an absolute thrill ride. It opens with a gripping hook and unfolds over the course of a single day, masterfully crafted by Brown. I was immediately drawn into the story and found myself relating to Robert Langdon. The plot twist is something that will stay with you long after you&#x27;ve turned the final page.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;2. The Stranger - Albert Camus&lt;&#x2F;strong&gt;
+Camus&#x27;s philosophical masterpiece is a haunting exploration of existentialism and absurdity. The story follows Meursault, a detached French-Algerian man whose emotional indifference leads to a shocking crime. What makes this novella so powerful is how Camus forces you to confront uncomfortable questions about meaning, morality, and the human condition. The famous opening line – &quot;Mother died today&quot; – sets the tone for a narrative that&#x27;s both unsettling and profoundly thought-provoking. and the ending convo with the priest is also nice.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;3. Metamorphosis - Franz Kafka&lt;&#x2F;strong&gt;
+Kafka&#x27;s surreal tale of Gregor Samsa, who wakes up transformed into a giant insect, is both bizarre and deeply moving. On the surface, it&#x27;s about a man dealing with his literal transformation, but it&#x27;s really a powerful allegory about alienation, family dynamics, and what happens when we become burdens to those we love. Kafka&#x27;s ability to make the impossible feel emotionally real is what makes this short story a timeless classic.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;4. A Short History of Nearly Everything - Bill Bryson&lt;&#x2F;strong&gt;
+Bryson takes the intimidating subject of science and makes it absolutely captivating. From the Big Bang to the rise of civilization, he explains complex scientific concepts with humor and clarity that makes you feel like you&#x27;re having a conversation with the smartest, funniest friend you know. It&#x27;s the rare book that can make you laugh while teaching you about quantum physics and the history of Earth. Not only this book is Badass but just because i have read this I have limitless things to bring in a random convo with my girlfriend.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;5. Savarkar: Echoes from a Forgotten Past - Vikram Sampath&lt;&#x2F;strong&gt;
+Sampath&#x27;s biographical work on Vinayak Damodar Savarkar is a meticulously researched exploration of one of India&#x27;s most controversial historical figures. The book presents a nuanced portrait of the revolutionary, poet, and political theorist, examining both his contributions to India&#x27;s independence movement and his more contentious ideological positions. It&#x27;s essential reading for understanding the complexities of Indian political thought and history. Sampath is a brilliant and important historian that india needs.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Tools that i use and whyyyyyy?</title>
+        <published>2025-08-23T00:00:00+00:00</published>
+        <updated>2025-08-23T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://lordofwizard.com/posts/tools-i-use/"/>
+        <id>https://lordofwizard.com/posts/tools-i-use/</id>
+        
+        <content type="html" xml:base="https://lordofwizard.com/posts/tools-i-use/">&lt;h1 id=&quot;tech-i-use&quot;&gt;Tech I Use&lt;a class=&quot;zola-anchor&quot; href=&quot;#tech-i-use&quot; aria-label=&quot;Anchor link for: tech-i-use&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h1&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;arch-linux&quot;&gt;&lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;archlinux.org&#x2F;&quot;&gt;Arch Linux&lt;&#x2F;a&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#arch-linux&quot; aria-label=&quot;Anchor link for: arch-linux&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;I run Arch because it just &lt;em&gt;makes sense&lt;&#x2F;em&gt;. The &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;facebook.github.io&#x2F;zstd&#x2F;&quot;&gt;zstd&lt;&#x2F;a&gt; compression for packages is blazing fast, and of course the &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;aur.archlinux.org&quot;&gt;AUR&lt;&#x2F;a&gt; is basically cheating — anything you could possibly want, someone’s already packaged. Rolling release, minimal, zero fluff.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;neovim&quot;&gt;&lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;neovim.io&#x2F;&quot;&gt;Neovim&lt;&#x2F;a&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#neovim&quot; aria-label=&quot;Anchor link for: neovim&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;No plugin zoo, no 200-line config. Just a single &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;neovim.io&#x2F;doc&#x2F;user&#x2F;lua-guide.html&quot;&gt;&lt;code&gt;init.lua&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; with ~10–20 sane defaults. I stick to built-in motions and keymaps (because &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;duckduckgo.com&quot;&gt;search engines exist&lt;&#x2F;a&gt;), which keeps it minimal, fast, and frictionless.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;tmux&quot;&gt;&lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;tmux&#x2F;tmux&#x2F;wiki&quot;&gt;tmux&lt;&#x2F;a&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#tmux&quot; aria-label=&quot;Anchor link for: tmux&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Simple. Consistent. Indispensable. I use it to spin up apps on a server and let them live in the background forever. Detach, reattach, never worry about killing something by mistake.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;alacritty&quot;&gt;&lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;alacritty.org&#x2F;&quot;&gt;Alacritty&lt;&#x2F;a&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#alacritty&quot; aria-label=&quot;Anchor link for: alacritty&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;GPU-rendered terminal that just flies. No tabs, no bloat, no distractions — just raw speed.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;hmcl-hello-minecraft-launcher&quot;&gt;&lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;hmcl.huangyuhui.net&#x2F;&quot;&gt;HMCL (Hello Minecraft! Launcher)&lt;&#x2F;a&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#hmcl-hello-minecraft-launcher&quot; aria-label=&quot;Anchor link for: hmcl-hello-minecraft-launcher&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;The most no-bullshit Minecraft launcher I’ve found. Offline-friendly, lightweight, and skips all the unnecessary crap.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;brave&quot;&gt;&lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;brave.com&#x2F;&quot;&gt;Brave&lt;&#x2F;a&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#brave&quot; aria-label=&quot;Anchor link for: brave&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Think of it as &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;www.mozilla.org&#x2F;firefox&#x2F;&quot;&gt;Firefox&lt;&#x2F;a&gt; with &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;www.chromium.org&#x2F;Home&#x2F;&quot;&gt;Chromium&lt;&#x2F;a&gt; compatibility when you &lt;em&gt;need&lt;&#x2F;em&gt; it. Built-in &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;brave&#x2F;adblock-rust&quot;&gt;adblocking&lt;&#x2F;a&gt;, but I nuke the sponsored newsfeed and other cruft. Fast, functional, and gets out of the way.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;obsidian-syncthing&quot;&gt;&lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;obsidian.md&#x2F;&quot;&gt;Obsidian&lt;&#x2F;a&gt; + &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;syncthing.net&#x2F;&quot;&gt;Syncthing&lt;&#x2F;a&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#obsidian-syncthing&quot; aria-label=&quot;Anchor link for: obsidian-syncthing&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Obsidian is my second brain. I use the &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;fortelabs.com&#x2F;blog&#x2F;para&#x2F;&quot;&gt;PARA method&lt;&#x2F;a&gt; with some extra folders (&lt;code&gt;new_cache&#x2F;&lt;&#x2F;code&gt; + daily notes). Local-first, markdown-based, extensible. Syncthing does the syncing magic across devices — zero cloud lock-in.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;calibre&quot;&gt;&lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;calibre-ebook.com&#x2F;&quot;&gt;Calibre&lt;&#x2F;a&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#calibre&quot; aria-label=&quot;Anchor link for: calibre&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;The best way to manage and push ebooks to my &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;www.amazon.com&#x2F;kindle-dbs&#x2F;fd&#x2F;kcp&quot;&gt;Kindle&lt;&#x2F;a&gt;. Grab something from &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;z-lib.is&#x2F;&quot;&gt;Z-Library&lt;&#x2F;a&gt; and it’s on the device in seconds.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Tech That I use</title>
+        <published>2025-01-31T00:00:00+00:00</published>
+        <updated>2025-01-31T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://lordofwizard.com/posts/tech-i-use/"/>
+        <id>https://lordofwizard.com/posts/tech-i-use/</id>
+        
+        <content type="html" xml:base="https://lordofwizard.com/posts/tech-i-use/">&lt;h3 id=&quot;personal-laptop&quot;&gt;Personal Laptop&lt;a class=&quot;zola-anchor&quot; href=&quot;#personal-laptop&quot; aria-label=&quot;Anchor link for: personal-laptop&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Model&lt;&#x2F;strong&gt;: Lenovo IdeaPad Pro 5i (2024) Ultra 9 185H&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;CPU&lt;&#x2F;strong&gt;: Intel Core Ultra 9 185H (16C&#x2F;22T, up to 5.1 GHz)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;RAM&lt;&#x2F;strong&gt;: 32 GB LPDDR5x-7467 (soldered)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Storage&lt;&#x2F;strong&gt;: 1 TB PCIe 4.0 NVMe SSD&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;OS&lt;&#x2F;strong&gt;: &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;archlinux.org&quot;&gt;Arch Linux&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;secondary-monitor&quot;&gt;Secondary Monitor&lt;a class=&quot;zola-anchor&quot; href=&quot;#secondary-monitor&quot; aria-label=&quot;Anchor link for: secondary-monitor&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Model&lt;&#x2F;strong&gt;: LG 22-inch (55.88 cm) Full HD IPS Monitor&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Display&lt;&#x2F;strong&gt;: 1920×1080, IPS panel, slim bezel design&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;other-devices&quot;&gt;Other Devices&lt;a class=&quot;zola-anchor&quot; href=&quot;#other-devices&quot; aria-label=&quot;Anchor link for: other-devices&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;h4 id=&quot;e-reader&quot;&gt;E Reader&lt;a class=&quot;zola-anchor&quot; href=&quot;#e-reader&quot; aria-label=&quot;Anchor link for: e-reader&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Model&lt;&#x2F;strong&gt;: Kindle (11th Gen, 2022 – “All-New”)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;phone&quot;&gt;Phone&lt;a class=&quot;zola-anchor&quot; href=&quot;#phone&quot; aria-label=&quot;Anchor link for: phone&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Model&lt;&#x2F;strong&gt;: Samsung Galaxy M52 5G&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;tinkering-laptop&quot;&gt;Tinkering Laptop&lt;a class=&quot;zola-anchor&quot; href=&quot;#tinkering-laptop&quot; aria-label=&quot;Anchor link for: tinkering-laptop&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Model&lt;&#x2F;strong&gt;: Lenovo 3000 C200&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Specs&lt;&#x2F;strong&gt;: Intel Core Duo &#x2F; 1 GB RAM, 80 GB HDD, 15.4&quot; display&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;desktop-streaming-pc&quot;&gt;Desktop &#x2F; Streaming Pc&lt;a class=&quot;zola-anchor&quot; href=&quot;#desktop-streaming-pc&quot; aria-label=&quot;Anchor link for: desktop-streaming-pc&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;CPU&lt;&#x2F;strong&gt;: Intel Core i3 7100&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;GPU&lt;&#x2F;strong&gt;: Gigabyte G1 Gaming Redeon RX 570 4gb&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;RAM&lt;&#x2F;strong&gt;: 8GB 2133 Mhz DDR4 Ram&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Storage&lt;&#x2F;strong&gt; : 4tb (multiple drives) Western Digital 7200rpm Hard Drives.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;OS&lt;&#x2F;strong&gt;: &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;archlinux.org&quot;&gt;Arch Linux&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;vps&quot;&gt;VPS&lt;a class=&quot;zola-anchor&quot; href=&quot;#vps&quot; aria-label=&quot;Anchor link for: vps&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;CPU&lt;&#x2F;strong&gt;: Amphere 8 cores 8 threads&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;RAM&lt;&#x2F;strong&gt;: 24 Gig&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;OS&lt;&#x2F;strong&gt;: Ubuntu Server 24.04 LTS&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+</feed>
