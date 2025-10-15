@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>LordOfWizard - Blog</title>
+    <subtitle>LordOfWizard&#x27;s Blog</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://lordofwizard.com/posts/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://lordofwizard.com/posts/"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-10-10T00:00:00+00:00</updated>
+    <id>https://lordofwizard.com/posts/atom.xml</id>
+    <entry xml:lang="en">
+        <title>My NixOS Basic no bs bare install guide</title>
+        <published>2025-10-10T00:00:00+00:00</published>
+        <updated>2025-10-10T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://lordofwizard.com/posts/nixos-base/"/>
+        <id>https://lordofwizard.com/posts/nixos-base/</id>
+        
+        <content type="html" xml:base="https://lordofwizard.com/posts/nixos-base/">&lt;p&gt;&lt;img src=&quot;&#x2F;img&#x2F;nixgirl.webp&quot; alt=&quot;nixgirl&quot; &#x2F;&gt;
+(for legacy bios only)&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Download the iso from &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;nixos.org&#x2F;download&#x2F;&quot;&gt;this link&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;now it&#x27;s time to partition stuff&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h2 id=&quot;partition-table-should-be-like-this-yo&quot;&gt;Partition table should be like this yo&lt;a class=&quot;zola-anchor&quot; href=&quot;#partition-table-should-be-like-this-yo&quot; aria-label=&quot;Anchor link for: partition-table-should-be-like-this-yo&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Device&lt;&#x2F;th&gt;&lt;th&gt;Mount Point&lt;&#x2F;th&gt;&lt;th&gt;Type&lt;&#x2F;th&gt;&lt;th&gt;Filesystem&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;&lt;code&gt;&#x2F;dev&#x2F;vda1&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;&lt;code&gt;&#x2F;boot&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;boot partition&lt;&#x2F;td&gt;&lt;td&gt;ext4&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;code&gt;&#x2F;dev&#x2F;vda2&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;swap&lt;&#x2F;td&gt;&lt;td&gt;swap&lt;&#x2F;td&gt;&lt;td&gt;swap&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;code&gt;&#x2F;dev&#x2F;vda3&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;&lt;code&gt;&#x2F;&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;root&lt;&#x2F;td&gt;&lt;td&gt;ext4&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;code&gt;note this is on a qemu system so beware, change partition names according to your need&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;&lt;&#x2F;td&gt;&lt;td&gt;&lt;&#x2F;td&gt;&lt;td&gt;&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;format the partitions&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;mkfs.ext4&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; &#x2F;dev&#x2F;vda1&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;mkswap&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; &#x2F;dev&#x2F;vda2&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;mkfs.ext4&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; &#x2F;dev&#x2F;vda3&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;ol start=&quot;4&quot;&gt;
+&lt;li&gt;Mount these sons of Bits&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;mount&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; &#x2F;dev&#x2F;vda3 &#x2F;mnt&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;mkdir&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; &#x2F;mnt&#x2F;boot&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;mount&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; &#x2F;dev&#x2F;vda1 &#x2F;mnt&#x2F;boot&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;swapon&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; &#x2F;dev&#x2F;vda2&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;ol start=&quot;5&quot;&gt;
+&lt;li&gt;generate the god damn configuration&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;nixos-generate-config&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; --&lt;&#x2F;span&gt;root&lt;&#x2F;span&gt; &#x2F;mnt&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;vim&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; &#x2F;mnt&#x2F;etc&#x2F;nixos&#x2F;configuration.nix&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;ol start=&quot;6&quot;&gt;
+&lt;li&gt;Now change these follwing options i guess.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;pre data-lang=&quot;nix&quot; class=&quot;language-nix z-code&quot;&gt;&lt;code class=&quot;language-nix&quot; data-lang=&quot;nix&quot;&gt;&lt;span class=&quot;z-source z-nix&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;boot&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-nix&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;loader&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-nix&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;grub&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-nix&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;enable&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-language z-nix&quot;&gt;true&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal&quot;&gt;;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-nix&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;boot&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-nix&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;loader&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-nix&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;grub&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-nix&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;device&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-double z-nix&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-double z-start z-nix&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&#x2F;dev&#x2F;vda&lt;span class=&quot;z-punctuation z-definition z-string z-double z-end z-nix&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal&quot;&gt;;&lt;&#x2F;span&gt;  &lt;span class=&quot;z-comment z-line z-number-sign z-nix&quot;&gt;# not &#x2F;dev&#x2F;vda1&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-nix&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;networking&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-nix&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;hostName&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-double z-nix&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-double z-start z-nix&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;hostname&lt;span class=&quot;z-punctuation z-definition z-string z-double z-end z-nix&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal&quot;&gt;;&lt;&#x2F;span&gt;  &lt;span class=&quot;z-comment z-line z-number-sign z-nix&quot;&gt;# or any name you want&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-nix&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;services&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-nix&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;openssh&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-nix&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;enable&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-language z-nix&quot;&gt;true&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal&quot;&gt;;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;ol start=&quot;7&quot;&gt;
+&lt;li&gt;then install using this command&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;pre class=&quot;z-code&quot;&gt;&lt;code&gt;&lt;span class=&quot;z-text z-plain&quot;&gt;nixos-install
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;ol start=&quot;8&quot;&gt;
+&lt;li&gt;it should be done then reboot using &lt;code&gt;reboot&lt;&#x2F;code&gt; lol.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;for-uefi-systems-additional-instructions&quot;&gt;For UEFI systems (additional instructions)&lt;a class=&quot;zola-anchor&quot; href=&quot;#for-uefi-systems-additional-instructions&quot; aria-label=&quot;Anchor link for: for-uefi-systems-additional-instructions&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;If you&#x27;re on a UEFI system instead of legacy BIOS, here&#x27;s what changes:&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;partition-table-for-uefi&quot;&gt;Partition table for UEFI&lt;a class=&quot;zola-anchor&quot; href=&quot;#partition-table-for-uefi&quot; aria-label=&quot;Anchor link for: partition-table-for-uefi&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Device&lt;&#x2F;th&gt;&lt;th&gt;Mount Point&lt;&#x2F;th&gt;&lt;th&gt;Type&lt;&#x2F;th&gt;&lt;th&gt;Filesystem&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;&lt;code&gt;&#x2F;dev&#x2F;vda1&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;&lt;code&gt;&#x2F;boot&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;EFI System Partition&lt;&#x2F;td&gt;&lt;td&gt;vfat&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;code&gt;&#x2F;dev&#x2F;vda2&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;swap&lt;&#x2F;td&gt;&lt;td&gt;swap&lt;&#x2F;td&gt;&lt;td&gt;swap&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;code&gt;&#x2F;dev&#x2F;vda3&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;&lt;code&gt;&#x2F;&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;root&lt;&#x2F;td&gt;&lt;td&gt;ext4&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;h3 id=&quot;format-partitions-for-uefi&quot;&gt;Format partitions for UEFI&lt;a class=&quot;zola-anchor&quot; href=&quot;#format-partitions-for-uefi&quot; aria-label=&quot;Anchor link for: format-partitions-for-uefi&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;mkfs.vfat&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-option z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-parameter z-shell&quot;&gt; -&lt;&#x2F;span&gt;F&lt;&#x2F;span&gt; 32 &#x2F;dev&#x2F;vda1  &lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-begin z-shell&quot;&gt;#&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt; EFI partition needs vfat&lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-shell&quot;&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;mkswap&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; &#x2F;dev&#x2F;vda2&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;mkfs.ext4&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; &#x2F;dev&#x2F;vda3&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;mount-stays-the-same&quot;&gt;Mount stays the same&lt;a class=&quot;zola-anchor&quot; href=&quot;#mount-stays-the-same&quot; aria-label=&quot;Anchor link for: mount-stays-the-same&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;mount&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; &#x2F;dev&#x2F;vda3 &#x2F;mnt&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;mkdir&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; &#x2F;mnt&#x2F;boot&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;mount&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; &#x2F;dev&#x2F;vda1 &#x2F;mnt&#x2F;boot&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;swapon&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; &#x2F;dev&#x2F;vda2&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;configuration-changes-for-uefi&quot;&gt;Configuration changes for UEFI&lt;a class=&quot;zola-anchor&quot; href=&quot;#configuration-changes-for-uefi&quot; aria-label=&quot;Anchor link for: configuration-changes-for-uefi&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;Instead of GRUB on legacy BIOS, use systemd-boot:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;nix&quot; class=&quot;language-nix z-code&quot;&gt;&lt;code class=&quot;language-nix&quot; data-lang=&quot;nix&quot;&gt;&lt;span class=&quot;z-source z-nix&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;boot&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-nix&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;loader&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-nix&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;systemd-boot&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-nix&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;enable&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-language z-nix&quot;&gt;true&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal&quot;&gt;;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-nix&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;boot&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-nix&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;loader&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-nix&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;efi&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-nix&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;canTouchEfiVariables&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-language z-nix&quot;&gt;true&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal&quot;&gt;;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-nix&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;networking&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-nix&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;hostName&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-double z-nix&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-double z-start z-nix&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;hostname&lt;span class=&quot;z-punctuation z-definition z-string z-double z-end z-nix&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal&quot;&gt;;&lt;&#x2F;span&gt;  &lt;span class=&quot;z-comment z-line z-number-sign z-nix&quot;&gt;# or any name you want&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-nix&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;services&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-nix&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;openssh&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-nix&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;enable&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-language z-nix&quot;&gt;true&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal&quot;&gt;;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The rest (generate config, install, reboot) stays exactly the same.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h4 id=&quot;some-extra-options-you-should-sorta-edit&quot;&gt;Some extra options you should sorta edit&lt;a class=&quot;zola-anchor&quot; href=&quot;#some-extra-options-you-should-sorta-edit&quot; aria-label=&quot;Anchor link for: some-extra-options-you-should-sorta-edit&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h4&gt;
+&lt;ol&gt;
+&lt;li&gt;set time zone&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;pre data-lang=&quot;nix&quot; class=&quot;language-nix z-code&quot;&gt;&lt;code class=&quot;language-nix&quot; data-lang=&quot;nix&quot;&gt;&lt;span class=&quot;z-source z-nix&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;time&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-nix&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;timeZone&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-double z-nix&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-double z-start z-nix&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;Asia&#x2F;Kolkata&lt;span class=&quot;z-punctuation z-definition z-string z-double z-end z-nix&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal&quot;&gt;;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;setup locale&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;pre data-lang=&quot;nix&quot; class=&quot;language-nix z-code&quot;&gt;&lt;code class=&quot;language-nix&quot; data-lang=&quot;nix&quot;&gt;&lt;span class=&quot;z-source z-nix&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;i18n&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-nix&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;defaultLocale&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-double z-nix&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-double z-start z-nix&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;en_US.UTF-8&lt;span class=&quot;z-punctuation z-definition z-string z-double z-end z-nix&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal&quot;&gt;;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h4 id=&quot;user-adding&quot;&gt;User adding&lt;a class=&quot;zola-anchor&quot; href=&quot;#user-adding&quot; aria-label=&quot;Anchor link for: user-adding&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h4&gt;
+&lt;pre data-lang=&quot;nix&quot; class=&quot;language-nix z-code&quot;&gt;&lt;code class=&quot;language-nix&quot; data-lang=&quot;nix&quot;&gt;&lt;span class=&quot;z-source z-nix&quot;&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;users&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-nix&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;users&lt;&#x2F;span&gt;&lt;span class=&quot;z-keyword z-operator z-nix&quot;&gt;.&lt;&#x2F;span&gt;&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;lordofwizard&lt;&#x2F;span&gt; &lt;span class=&quot;z-invalid z-illegal&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-definition z-attrset-or-function z-nix&quot;&gt;{&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-nix&quot;&gt;	&lt;span class=&quot;z-entity z-other z-attribute-name z-multipart z-nix&quot;&gt;isNormalUser&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-bind z-nix&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-constant z-language z-nix&quot;&gt;true&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-bind z-nix&quot;&gt;;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-nix&quot;&gt;	&lt;span class=&quot;z-entity z-other z-attribute-name z-multipart z-nix&quot;&gt;extraGroups&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-bind z-nix&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-definition z-list z-nix&quot;&gt;[&lt;&#x2F;span&gt; &lt;span class=&quot;z-string z-quoted z-double z-nix&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-double z-start z-nix&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;wheel&lt;span class=&quot;z-punctuation z-definition z-string z-double z-end z-nix&quot;&gt;&amp;quot;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;span class=&quot;z-punctuation z-definition z-list z-nix&quot;&gt;]&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-bind z-nix&quot;&gt;;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-nix&quot;&gt;	&lt;span class=&quot;z-entity z-other z-attribute-name z-multipart z-nix&quot;&gt;packages&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-operator z-bind z-nix&quot;&gt;=&lt;&#x2F;span&gt; &lt;span class=&quot;z-keyword z-other z-nix&quot;&gt;with&lt;&#x2F;span&gt; &lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;pkgs&lt;&#x2F;span&gt;; &lt;span class=&quot;z-punctuation z-definition z-list z-nix&quot;&gt;[&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-nix&quot;&gt;		&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;tree&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-nix&quot;&gt;		&lt;span class=&quot;z-variable z-parameter z-name z-nix&quot;&gt;htop&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-nix&quot;&gt;	&lt;span class=&quot;z-punctuation z-definition z-list z-nix&quot;&gt;]&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-terminator z-bind z-nix&quot;&gt;;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-nix&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-attrset z-nix&quot;&gt;}&lt;&#x2F;span&gt;&lt;span class=&quot;z-invalid z-illegal&quot;&gt;;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>We live in a attention economy</title>
+        <published>2025-10-06T00:00:00+00:00</published>
+        <updated>2025-10-06T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://lordofwizard.com/posts/we-live-in-a-attention-economy/"/>
+        <id>https://lordofwizard.com/posts/we-live-in-a-attention-economy/</id>
+        
+        <content type="html" xml:base="https://lordofwizard.com/posts/we-live-in-a-attention-economy/">&lt;p&gt;&lt;img src=&quot;&#x2F;img&#x2F;social-doomer.webp&quot; alt=&quot;doomer&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;So first lets focus on what a economy is, &quot;An economy is an area of the production, distribution and trade, as well as consumption of goods and services&quot;. So how is our Attention is thing that can be monitized on?&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;some-observations-i-guess&quot;&gt;Some observations I guess&lt;a class=&quot;zola-anchor&quot; href=&quot;#some-observations-i-guess&quot; aria-label=&quot;Anchor link for: some-observations-i-guess&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;When you really think about it, we as people without thinking about it spend a good amount of our valuable time on social media, where companies like meta have their most apps. Come to think of it, most of us have never ever paid a single penny on any of these sites to be on the platform. So why and how are these companies are one of the most biggest companies in the world?&lt;br &#x2F;&gt;
+On paper we are being sold the idea of &quot;We connect the world&quot; but what is being hidden is, we are the product.&lt;&#x2F;p&gt;
+&lt;p&gt;I was scrolling Instagram few months ago, and suddenly I thought lets run a simple experiement, think of the last 5 reels you have watched. I could remember the previous one, but before that. POOFF I couldn&#x27;t remember shit. Aint that crazyy!?&lt;&#x2F;p&gt;
+&lt;p&gt;So as I was using the app, I could relate that this app is sorta designed to make me spend my most amount of time on it! and I came to this conclusition because of a certain game I was heavily addicted to called Balatro (It&#x27;s a poker+rougelike game).&lt;br &#x2F;&gt;
+Everytime I refreshed the page, this is like the slot mechanic we have in casino&#x27;s. But it&#x27;s more crazy because our social aspect is a buff that&#x27;s attached with this system.&lt;&#x2F;p&gt;
+&lt;p&gt;Posting something simple as just a quote from a random scene from my favorite tv show (Mad Men) and watching people go crazy over &lt;em&gt;my&lt;&#x2F;em&gt; post in comments was a crazy feeling. and trust me I did this multiple times, and it felt good. But I started observing how my mind was getting kicks through this similar to getting those fire scores in balatro.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;engagement-is-addictive-drug&quot;&gt;Engagement is addictive drug&lt;a class=&quot;zola-anchor&quot; href=&quot;#engagement-is-addictive-drug&quot; aria-label=&quot;Anchor link for: engagement-is-addictive-drug&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;The more I engaged, the more I craved that little hit in the balls. a like, a comment, a share. It&#x27;s wild how something so small can hijack your brain. And before you know it, you&#x27;re checking your phone every five minutes like a lab rat waiting for a pellet. The app learns what keeps you coming back, and it feeds it to you in just the right doses enough novelty, enough validation, enough emotion to keep you hooked but not full. That’s when I realized: in this economy, attention isn’t just valuable it’s everything. And we&#x27;re giving it away for free, one fuggin scroll at a time.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;reclaiming-attention-is-reclaiming-freedom&quot;&gt;Reclaiming Attention is Reclaiming Freedom&lt;a class=&quot;zola-anchor&quot; href=&quot;#reclaiming-attention-is-reclaiming-freedom&quot; aria-label=&quot;Anchor link for: reclaiming-attention-is-reclaiming-freedom&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;Cal Newport in Digital Minimalism talks about how our attention has become fragmented split into microseconds of stimulation. He says that constant lowquality engagement destroys our ability to focus deeply(ur shorts, reels, and constant twitter &#x2F; x refresh), to be bored, and to reflect. What’s scary is that we didn’t consciously choose this trade. The convenience, the connection, the entertainment they all came at the hidden cost of our mental clarity. Newport argues that to live well, we must treat our attention like a scarce resource — to spend it only on things that align with our values, not on endless feeds designed to exploit our impulses.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;choosing-depth-over-noise&quot;&gt;Choosing Depth over Noise&lt;a class=&quot;zola-anchor&quot; href=&quot;#choosing-depth-over-noise&quot; aria-label=&quot;Anchor link for: choosing-depth-over-noise&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;p&gt;When you unplug, even for a short while, something strange happens silence stops feeling awkward. You start thinking again, reading slowly, walking without music, or just existing without needing to “post” it. Newport calls this a return to “deep living.” It’s not about rejecting technology; it’s about using it with purpose. Once you begin curating what deserves your time conversations, books, projects, or real-world interactions you start noticing how shallow most digital noise really is. You realize that your attention isn’t just being stolen it’s being fuckin auctioned off mate. And every moment you reclaim is a small act of rebellion. Control waht you consume, take it in your own hands. It can be as small as, not letting algorithms design whatchu consume. Build systems that works for you.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Some of my favorite books of all time</title>
+        <published>2025-09-03T00:00:00+00:00</published>
+        <updated>2025-09-03T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://lordofwizard.com/posts/some-of-my-books/"/>
+        <id>https://lordofwizard.com/posts/some-of-my-books/</id>
+        
+        <content type="html" xml:base="https://lordofwizard.com/posts/some-of-my-books/">&lt;h4 id=&quot;some-of-my-favorite-books-of-all-time&quot;&gt;Some of My Favorite Books of All Time&lt;a class=&quot;zola-anchor&quot; href=&quot;#some-of-my-favorite-books-of-all-time&quot; aria-label=&quot;Anchor link for: some-of-my-favorite-books-of-all-time&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h4&gt;
+&lt;p&gt;My relationship with reading hasn&#x27;t been lifelong I only discovered this passion relatively recently. I struggled with English in high school, but after immersing myself in English movies and TV shows, I became comfortable reading in the language daily.&lt;&#x2F;p&gt;
+&lt;p&gt;I started with accessible books like the beloved Harry Potter series and some works by R. K. Narayan, then fell down the self-help rabbit hole (Think and Grow Rich, Jeff Keller, Dale Carnegie, The Alchemist – you know the drill).&lt;&#x2F;p&gt;
+&lt;p&gt;Eventually, I graduated to some truly exceptional novels. Here they are, along with my experiences:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;1. Angels and Demons - Dan Brown&lt;&#x2F;strong&gt;
+This book is an absolute thrill ride. It opens with a gripping hook and unfolds over the course of a single day, masterfully crafted by Brown. I was immediately drawn into the story and found myself relating to Robert Langdon. The plot twist is something that will stay with you long after you&#x27;ve turned the final page.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;2. The Stranger - Albert Camus&lt;&#x2F;strong&gt;
+Camus&#x27;s philosophical masterpiece is a haunting exploration of existentialism and absurdity. The story follows Meursault, a detached French-Algerian man whose emotional indifference leads to a shocking crime. What makes this novella so powerful is how Camus forces you to confront uncomfortable questions about meaning, morality, and the human condition. The famous opening line – &quot;Mother died today&quot; – sets the tone for a narrative that&#x27;s both unsettling and profoundly thought-provoking. and the ending convo with the priest is also nice.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;3. Metamorphosis - Franz Kafka&lt;&#x2F;strong&gt;
+Kafka&#x27;s surreal tale of Gregor Samsa, who wakes up transformed into a giant insect, is both bizarre and deeply moving. On the surface, it&#x27;s about a man dealing with his literal transformation, but it&#x27;s really a powerful allegory about alienation, family dynamics, and what happens when we become burdens to those we love. Kafka&#x27;s ability to make the impossible feel emotionally real is what makes this short story a timeless classic.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;4. A Short History of Nearly Everything - Bill Bryson&lt;&#x2F;strong&gt;
+Bryson takes the intimidating subject of science and makes it absolutely captivating. From the Big Bang to the rise of civilization, he explains complex scientific concepts with humor and clarity that makes you feel like you&#x27;re having a conversation with the smartest, funniest friend you know. It&#x27;s the rare book that can make you laugh while teaching you about quantum physics and the history of Earth. Not only this book is Badass but just because i have read this I have limitless things to bring in a random convo with my girlfriend.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;5. Savarkar: Echoes from a Forgotten Past - Vikram Sampath&lt;&#x2F;strong&gt;
+Sampath&#x27;s biographical work on Vinayak Damodar Savarkar is a meticulously researched exploration of one of India&#x27;s most controversial historical figures. The book presents a nuanced portrait of the revolutionary, poet, and political theorist, examining both his contributions to India&#x27;s independence movement and his more contentious ideological positions. It&#x27;s essential reading for understanding the complexities of Indian political thought and history. Sampath is a brilliant and important historian that india needs.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Tools that i use and whyyyyyy?</title>
+        <published>2025-08-23T00:00:00+00:00</published>
+        <updated>2025-08-23T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://lordofwizard.com/posts/tools-i-use/"/>
+        <id>https://lordofwizard.com/posts/tools-i-use/</id>
+        
+        <content type="html" xml:base="https://lordofwizard.com/posts/tools-i-use/">&lt;h1 id=&quot;tech-i-use&quot;&gt;Tech I Use&lt;a class=&quot;zola-anchor&quot; href=&quot;#tech-i-use&quot; aria-label=&quot;Anchor link for: tech-i-use&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h1&gt;
+&lt;hr &#x2F;&gt;
+&lt;h2 id=&quot;arch-linux&quot;&gt;&lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;archlinux.org&#x2F;&quot;&gt;Arch Linux&lt;&#x2F;a&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#arch-linux&quot; aria-label=&quot;Anchor link for: arch-linux&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;I run Arch because it just &lt;em&gt;makes sense&lt;&#x2F;em&gt;. The &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;facebook.github.io&#x2F;zstd&#x2F;&quot;&gt;zstd&lt;&#x2F;a&gt; compression for packages is blazing fast, and of course the &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;aur.archlinux.org&quot;&gt;AUR&lt;&#x2F;a&gt; is basically cheating — anything you could possibly want, someone’s already packaged. Rolling release, minimal, zero fluff.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;neovim&quot;&gt;&lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;neovim.io&#x2F;&quot;&gt;Neovim&lt;&#x2F;a&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#neovim&quot; aria-label=&quot;Anchor link for: neovim&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;No plugin zoo, no 200-line config. Just a single &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;neovim.io&#x2F;doc&#x2F;user&#x2F;lua-guide.html&quot;&gt;&lt;code&gt;init.lua&lt;&#x2F;code&gt;&lt;&#x2F;a&gt; with ~10–20 sane defaults. I stick to built-in motions and keymaps (because &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;duckduckgo.com&quot;&gt;search engines exist&lt;&#x2F;a&gt;), which keeps it minimal, fast, and frictionless.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;tmux&quot;&gt;&lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;tmux&#x2F;tmux&#x2F;wiki&quot;&gt;tmux&lt;&#x2F;a&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#tmux&quot; aria-label=&quot;Anchor link for: tmux&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Simple. Consistent. Indispensable. I use it to spin up apps on a server and let them live in the background forever. Detach, reattach, never worry about killing something by mistake.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;alacritty&quot;&gt;&lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;alacritty.org&#x2F;&quot;&gt;Alacritty&lt;&#x2F;a&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#alacritty&quot; aria-label=&quot;Anchor link for: alacritty&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;GPU-rendered terminal that just flies. No tabs, no bloat, no distractions — just raw speed.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;hmcl-hello-minecraft-launcher&quot;&gt;&lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;hmcl.huangyuhui.net&#x2F;&quot;&gt;HMCL (Hello Minecraft! Launcher)&lt;&#x2F;a&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#hmcl-hello-minecraft-launcher&quot; aria-label=&quot;Anchor link for: hmcl-hello-minecraft-launcher&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;The most no-bullshit Minecraft launcher I’ve found. Offline-friendly, lightweight, and skips all the unnecessary crap.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;brave&quot;&gt;&lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;brave.com&#x2F;&quot;&gt;Brave&lt;&#x2F;a&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#brave&quot; aria-label=&quot;Anchor link for: brave&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Think of it as &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;www.mozilla.org&#x2F;firefox&#x2F;&quot;&gt;Firefox&lt;&#x2F;a&gt; with &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;www.chromium.org&#x2F;Home&#x2F;&quot;&gt;Chromium&lt;&#x2F;a&gt; compatibility when you &lt;em&gt;need&lt;&#x2F;em&gt; it. Built-in &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;brave&#x2F;adblock-rust&quot;&gt;adblocking&lt;&#x2F;a&gt;, but I nuke the sponsored newsfeed and other cruft. Fast, functional, and gets out of the way.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;obsidian-syncthing&quot;&gt;&lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;obsidian.md&#x2F;&quot;&gt;Obsidian&lt;&#x2F;a&gt; + &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;syncthing.net&#x2F;&quot;&gt;Syncthing&lt;&#x2F;a&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#obsidian-syncthing&quot; aria-label=&quot;Anchor link for: obsidian-syncthing&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;Obsidian is my second brain. I use the &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;fortelabs.com&#x2F;blog&#x2F;para&#x2F;&quot;&gt;PARA method&lt;&#x2F;a&gt; with some extra folders (&lt;code&gt;new_cache&#x2F;&lt;&#x2F;code&gt; + daily notes). Local-first, markdown-based, extensible. Syncthing does the syncing magic across devices — zero cloud lock-in.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;calibre&quot;&gt;&lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;calibre-ebook.com&#x2F;&quot;&gt;Calibre&lt;&#x2F;a&gt;&lt;a class=&quot;zola-anchor&quot; href=&quot;#calibre&quot; aria-label=&quot;Anchor link for: calibre&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h2&gt;
+&lt;p&gt;The best way to manage and push ebooks to my &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;www.amazon.com&#x2F;kindle-dbs&#x2F;fd&#x2F;kcp&quot;&gt;Kindle&lt;&#x2F;a&gt;. Grab something from &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;z-lib.is&#x2F;&quot;&gt;Z-Library&lt;&#x2F;a&gt; and it’s on the device in seconds.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Tech That I use</title>
+        <published>2025-01-31T00:00:00+00:00</published>
+        <updated>2025-01-31T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://lordofwizard.com/posts/tech-i-use/"/>
+        <id>https://lordofwizard.com/posts/tech-i-use/</id>
+        
+        <content type="html" xml:base="https://lordofwizard.com/posts/tech-i-use/">&lt;h3 id=&quot;personal-laptop&quot;&gt;Personal Laptop&lt;a class=&quot;zola-anchor&quot; href=&quot;#personal-laptop&quot; aria-label=&quot;Anchor link for: personal-laptop&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Model&lt;&#x2F;strong&gt;: Lenovo IdeaPad Pro 5i (2024) Ultra 9 185H&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;CPU&lt;&#x2F;strong&gt;: Intel Core Ultra 9 185H (16C&#x2F;22T, up to 5.1 GHz)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;RAM&lt;&#x2F;strong&gt;: 32 GB LPDDR5x-7467 (soldered)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Storage&lt;&#x2F;strong&gt;: 1 TB PCIe 4.0 NVMe SSD&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;OS&lt;&#x2F;strong&gt;: &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;archlinux.org&quot;&gt;Arch Linux&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;secondary-monitor&quot;&gt;Secondary Monitor&lt;a class=&quot;zola-anchor&quot; href=&quot;#secondary-monitor&quot; aria-label=&quot;Anchor link for: secondary-monitor&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Model&lt;&#x2F;strong&gt;: LG 22-inch (55.88 cm) Full HD IPS Monitor&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Display&lt;&#x2F;strong&gt;: 1920×1080, IPS panel, slim bezel design&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;other-devices&quot;&gt;Other Devices&lt;a class=&quot;zola-anchor&quot; href=&quot;#other-devices&quot; aria-label=&quot;Anchor link for: other-devices&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;h4 id=&quot;e-reader&quot;&gt;E Reader&lt;a class=&quot;zola-anchor&quot; href=&quot;#e-reader&quot; aria-label=&quot;Anchor link for: e-reader&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Model&lt;&#x2F;strong&gt;: Kindle (11th Gen, 2022 – “All-New”)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h4 id=&quot;phone&quot;&gt;Phone&lt;a class=&quot;zola-anchor&quot; href=&quot;#phone&quot; aria-label=&quot;Anchor link for: phone&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Model&lt;&#x2F;strong&gt;: Samsung Galaxy M52 5G&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;tinkering-laptop&quot;&gt;Tinkering Laptop&lt;a class=&quot;zola-anchor&quot; href=&quot;#tinkering-laptop&quot; aria-label=&quot;Anchor link for: tinkering-laptop&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Model&lt;&#x2F;strong&gt;: Lenovo 3000 C200&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Specs&lt;&#x2F;strong&gt;: Intel Core Duo &#x2F; 1 GB RAM, 80 GB HDD, 15.4&quot; display&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;desktop-streaming-pc&quot;&gt;Desktop &#x2F; Streaming Pc&lt;a class=&quot;zola-anchor&quot; href=&quot;#desktop-streaming-pc&quot; aria-label=&quot;Anchor link for: desktop-streaming-pc&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;CPU&lt;&#x2F;strong&gt;: Intel Core i3 7100&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;GPU&lt;&#x2F;strong&gt;: Gigabyte G1 Gaming Redeon RX 570 4gb&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;RAM&lt;&#x2F;strong&gt;: 8GB 2133 Mhz DDR4 Ram&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Storage&lt;&#x2F;strong&gt; : 4tb (multiple drives) Western Digital 7200rpm Hard Drives.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;OS&lt;&#x2F;strong&gt;: &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;archlinux.org&quot;&gt;Arch Linux&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;vps&quot;&gt;VPS&lt;a class=&quot;zola-anchor&quot; href=&quot;#vps&quot; aria-label=&quot;Anchor link for: vps&quot; style=&quot;visibility: hidden;&quot;&gt;&lt;&#x2F;a&gt;
+&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;CPU&lt;&#x2F;strong&gt;: Amphere 8 cores 8 threads&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;RAM&lt;&#x2F;strong&gt;: 24 Gig&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;OS&lt;&#x2F;strong&gt;: Ubuntu Server 24.04 LTS&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+</feed>
